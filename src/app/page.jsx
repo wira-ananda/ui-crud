@@ -7,3 +7,11 @@ export default function Home() {
     </main>
   );
 }
+
+function AddPasien() {
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
+}
