@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useState, useEffect } from "react";
+import logoku from "@/img/LogoWiraHitam.svg";
 
 function AddPasien() {
   const [submitter, setSubmitter] = useState(false);
@@ -25,6 +26,21 @@ function AddPasien() {
         <td>{item.alamat}</td>
         <td>{item.keluhan}</td>
         <td>{item.kunjungan}</td>
+        <td>
+          <Button
+            colorScheme="red"
+            onClick={async () => {
+              try {
+                await axiosInstance.delete(`/pasien/${item.noPasien}`);
+                window.location.reload();
+              } catch (error) {
+                console.error("Submit Gagal: ", error);
+              }
+            }}
+          >
+            Delete
+          </Button>
+        </td>
       </tr>
     ));
   };
@@ -83,6 +99,7 @@ function AddPasien() {
             <th>Alamat</th>
             <th>Keluhan</th>
             <th>Kunjungan</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>{renderData()}</tbody>
@@ -125,6 +142,14 @@ function AddPasien() {
   );
 }
 
+function Footer() {
+  return (
+    <div className="w-[100vw] h-[10vh]">
+      <div></div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -133,6 +158,7 @@ export default function Home() {
           MONITORING DATA PASIEN RUMAH SAKIT WIRAA CORPORATION
         </h1>
         <AddPasien />
+        <Footer />
       </div>
     </main>
   );
