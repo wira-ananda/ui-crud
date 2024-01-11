@@ -2,6 +2,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { usePasien } from "@/hooks/pasien/useFetchPasien";
+import {
+  Container,
+  Heading,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+  Spinner,
+  FormControl,
+  FormLabel,
+  Input,
+  VStack,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
 
 export default function Home() {
   return (
@@ -21,6 +38,8 @@ function AddPasien() {
         <td>{item.noPasien}</td>
         <td>{item.nama}</td>
         <td>{item.keluhan}</td>
+        <td>{item.gender}</td>
+        <td>{item.alamat}</td>
         <td>{item.kunjungan}</td>
       </tr>
     ));
@@ -35,10 +54,26 @@ function AddPasien() {
             <th>ID</th>
             <th>Nama</th>
             <th>Keluhan</th>
+            <th>Gender</th>
+            <th>Alamat</th>
             <th>Kunjungan</th>
           </tr>
         </thead>
         <tbody>{renderData()}</tbody>
+        <form action="">
+          <VStack>
+            <FormControl>
+              <FormLabel></FormLabel>
+              <Input />
+            </FormControl>
+          </VStack>
+          <VStack>
+            <FormControl>
+              <FormLabel></FormLabel>
+              <Input />
+            </FormControl>
+          </VStack>
+        </form>
       </table>
     </div>
   );
