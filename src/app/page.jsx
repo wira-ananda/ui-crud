@@ -85,33 +85,34 @@ function AddPasien() {
   };
 
   const option = ["Masukkan Gender", "P", "L"];
+  const jarakTabel = "px-[3rem]";
 
   return (
     <div className="w-full h-[99.5%] block mx-auto">
       <h1 className="text-center font-bold text-[2rem] mb-[3rem]">
         Monitoring Data Pasien
       </h1>
-      <h1 className="font-semibold text-[1.5rem] mb-[.5rem] text-center">
+      <h1 className="font-semibold text-[1.5rem] mb-[1rem] text-center">
         Data Pasien
       </h1>
       {pasien.length == 0 ? (
         <div className="w-full rounded-lg text-center mb-[2rem] py-[.5rem]">
           <div>
             <a className="font-bold">Warning: </a>Belum ada pasien yang berobat
-            saat ini, silahkan input data jika ada pasien. yang datang...
+            saat ini, silahkan input data jika ada pasien yang datang...
           </div>
         </div>
       ) : (
         <table className="w-full rounded-lg text-center mb-[2rem] py-[.5rem]">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nama</th>
-              <th>Gender</th>
-              <th>Alamat</th>
-              <th>Keluhan</th>
-              <th>Kunjungan</th>
-              <th>Action</th>
+              <th className={jarakTabel}>ID</th>
+              <th className={jarakTabel}>Nama</th>
+              <th className={jarakTabel}>Gender</th>
+              <th className={jarakTabel}>Alamat</th>
+              <th className={jarakTabel}>Keluhan</th>
+              <th className={jarakTabel}>Kunjungan</th>
+              <th className={jarakTabel}>Action</th>
             </tr>
           </thead>
           <tbody>{renderData()}</tbody>
