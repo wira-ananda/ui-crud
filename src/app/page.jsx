@@ -12,6 +12,7 @@ import {
 import { useFormik } from "formik";
 import { useState, useEffect } from "react";
 import logoku from "@/img/LogoWiraHitam.svg";
+import Image from "next/image";
 
 function AddPasien() {
   const [submitter, setSubmitter] = useState(false);
@@ -47,10 +48,10 @@ function AddPasien() {
 
   const formik = useFormik({
     initialValues: {
-      nama: "",
-      gender: "",
-      alamat: "",
-      keluhan: "",
+      nama: null,
+      gender: null,
+      alamat: null,
+      keluhan: null,
     },
     onSubmit: async () => {
       const { nama, gender, alamat, keluhan } = formik.values;
@@ -83,29 +84,41 @@ function AddPasien() {
     formik.setFieldValue(name, value);
   };
 
-  const option = ["P", "L"];
+  const option = ["Masukkan Gender", "P", "L"];
 
   return (
-    <div className="w-full mx-[5rem] block">
-      <h1 className="font-bold text-[1.5rem] mb-[.5rem] text-center">
-        DATA PASIEN
+    <div className="w-full h-[99.5%] block mx-auto">
+      <h1 className="text-center font-bold text-[2rem] mb-[3rem]">
+        Monitoring Data Pasien
       </h1>
-      <table className="w-full rounded-lg text-center mb-[2rem] py-[.5rem]">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>Gender</th>
-            <th>Alamat</th>
-            <th>Keluhan</th>
-            <th>Kunjungan</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{renderData()}</tbody>
-      </table>
-      <h1 className="font-bold text-[1.5rem] mb-[.5rem] text-center">
-        SUBMIT DATA PASIEN
+      <h1 className="font-semibold text-[1.5rem] mb-[.5rem] text-center">
+        Data Pasien
+      </h1>
+      {pasien.length == 0 ? (
+        <div className="w-full rounded-lg text-center mb-[2rem] py-[.5rem]">
+          <div>
+            <a className="font-bold">Warning: </a>Belum ada pasien yang berobat
+            saat ini, silahkan input data jika ada pasien. yang datang...
+          </div>
+        </div>
+      ) : (
+        <table className="w-full rounded-lg text-center mb-[2rem] py-[.5rem]">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama</th>
+              <th>Gender</th>
+              <th>Alamat</th>
+              <th>Keluhan</th>
+              <th>Kunjungan</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>{renderData()}</tbody>
+        </table>
+      )}
+      <h1 className="font-semibold text-[1.5rem] mb-[.5rem] text-center">
+        Input Data Pasien
       </h1>
       <form onSubmit={formik.handleSubmit}>
         <VStack spacing={3}>
@@ -143,20 +156,28 @@ function AddPasien() {
 }
 
 function Footer() {
+  const wiraaWebsite = "https://wiraananda.netlify.app/";
   return (
-    <div className="w-[100vw] h-[10vh]">
-      <div></div>
+    <div className="w-[100%] h-[.5%]">
+      <div className="flex justify-between">
+        <Image src={logoku} className="w-[5rem] h-[5rem]" alt="logo wiraa" />
+        <div className="h-full my-auto">
+          <h1>
+            created by{" "}
+            <a className="font-bold" href={wiraaWebsite}>
+              Wiraa
+            </a>
+          </h1>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-center font-bold text-[2rem] mb-[3rem]">
-          MONITORING DATA PASIEN RUMAH SAKIT WIRAA CORPORATION
-        </h1>
+    <main className="flex h-(100vh) w-(100%) flex-col items-center justify-between p-24">
+      <div className="items-center justify-between font-poppins text-sm h-[80vh]">
         <AddPasien />
         <Footer />
       </div>
